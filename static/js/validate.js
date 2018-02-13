@@ -138,7 +138,9 @@ $(document).ready(function(){
             $("#option-answer").val($(this).find(".option").text());
 		});
         $("#verify").click(function(){
-           $(".before").hide();
+            $(".list-group").toggleClass("disabled"); // disabled click on choices
+            $("#verify").toggleClass("disabled"); // disabled click on verify
+            $(".before").hide();
             $(".after").show();
             if($("#option-answer").val() == data[j-1].answer)
             {
@@ -149,6 +151,10 @@ $(document).ready(function(){
             }
         });
         $("#after").click(function(){
+            if($(".list-group").hasClass("disabled")){
+                $(".list-group").toggleClass("disabled"); // enable click on choices
+                $("#verify").toggleClass("disabled"); // enable click on verify
+            }
             if($("#option-answer").val() == data[j-1].answer)
                 count++;
             if(j >= data.length)
@@ -157,7 +163,7 @@ $(document).ready(function(){
                 $(".after-ok").hide();
                 $(".after-not-ok").hide();
                 $(".glyphicon-ok").attr("class","glyphicon glyphicon-unchecked col-sm-offset-1");
-            $   (".before").show();
+                $(".before").show();
                 $("#question-display").hide();
                 show_result(count,data.length);
                 return;
