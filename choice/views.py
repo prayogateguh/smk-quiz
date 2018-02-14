@@ -3,11 +3,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.views import logout
 from django.http.response import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+
 from rest_framework import viewsets
 
-from .models import Question, Exam
-from .serializer import QuestionSerialzer, ExamSerializer
+from .models import Exam, Question, Score
+from .serializer import ExamSerializer, QuestionSerialzer
+
 
 #welcome screen
 def welcome(request):
@@ -80,6 +82,24 @@ def add_question(request):
         q.save()
         return HttpResponse("success")
 
+@login_required()
+def upload_score(request):
+    if request.method == 'POST':
+        if 'test-score' in request.POST:
+            score = request.POST['test-score']
+        else:
+            score = 0
+        s = Score()
+        user = request.POST.get("user")
+        exam = request.POST.get("test-name")
+        s.user = User.objects.get(pk=user)
+        s.mata_pelajaran = Exam.objects.get(pk=exam)
+        s.kkm = 75
+        s.score = score
+        s.save()
+        return redirect('home')
+
+
 #viewsets for rest_framework
 class QuestionViewset(viewsets.ModelViewSet):
     queryset = Question.objects.all()
@@ -95,4 +115,3 @@ class ExamQuestionViewset(viewsets.ModelViewSet):
     queryset = Question.objects.filter(exam_id = 1)
     def get_queryset(self):
         return Question.objects.filter(exam_id=self.kwargs.get('pk'))
-

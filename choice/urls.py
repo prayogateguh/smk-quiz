@@ -17,5 +17,6 @@ urlpatterns = [
     url(r'^add_exam/', views.add_exam, name="add_exam"),
     url(r'^add_question/', views.add_question, name="add_question"),
     url(r'^test', views.get_data, name="getdata"),
+    url(r'^score/', views.upload_score, name="upload_score"),
     url(r'^logout', views.log_out, name="log_out"),
 ]

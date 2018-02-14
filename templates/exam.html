@@ -119,7 +119,13 @@
 
 <div style="display:none" class="jumbotron text-center" id="score">
     <p>Your Score is <span id="count"></span> out of <span id="total"></span></p>
-    <button class="btn btn-default exit-btn">exit</button>
+    <form action="{% url 'upload_score' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="test-score" value="" id="test-score">
+        <input type="hidden" name="test-name" value="" id="test-name">
+        <input type="hidden" name="user" value="{{ request.user.id }}">
+        <button class="btn btn-default exit-btn" id="submit-score" type="submit">exit</button>
+    </form>
 </div>
 
 <div id="no-questions" class="jumbotron text-center" style="display:none">

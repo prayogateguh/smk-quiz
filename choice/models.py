@@ -21,3 +21,14 @@ class Question(models.Model):
 
     def __str__(self):
         return self.question
+
+
+class Score(models.Model):
+    user = models.ForeignKey(User)
+    mata_pelajaran = models.ForeignKey(Exam)
+    score = models.IntegerField()
+    kkm = models.IntegerField()
+    tanggal = models.DateTimeField(auto_now_add=True, auto_now=False)
+
+    def __str__(self):
+        return self.user.username

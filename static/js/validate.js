@@ -1,6 +1,7 @@
 /**
  * Created by naveen sai kiran on 01-08-2016.
  */
+// function to submit score
 $(document).ready(function(){
    $("#register_form").submit(function(e){
        e.preventDefault();
@@ -126,9 +127,6 @@ $(document).ready(function(){
         $("#total").text(total);
         $("#score").slideDown();
     }
-    $(".exit-btn").click(function(){
-        window.location.reload();
-    });
     function test(data,count)
     {
         j = 1;
@@ -214,6 +212,12 @@ $(document).ready(function(){
                 test(data,0);
             });
     });
-        
-    
+    $(".exit-btn").click(function(){
+        count = $('#count').text();
+        total = $('#total').text();
+        score = parseInt(count)/parseInt(total) * 100;
+        $("#test-score").attr("value", score);
+        $("#test-name").attr("value", exam_id);
+        window.location.reload();
+    });
 });
