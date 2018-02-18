@@ -5,101 +5,36 @@
 <div class="dashboard-container">
 <div class="single-article">
 <div id="exam_list" class="text-center center-block">
+    <h1 class="text-center">List Ujian</h1>
     <span class="row"></span>
-    <div class="row">
-        <a href="#" class="add_exam">
-            <div class="panel panel-default col-sm-2 col-sm-offset-5">
-                <div class="panel-body">
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span class="glyphicon glyphicon-arrow-down" style="display:none"></span>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="row" id="show-exam-form" style="display: none">
-        <div class="panel panel-default col-sm-6 col-sm-offset-3">
-            <div class="panel-body">
-                <form name="exam-form" id="exam-form">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <input type="text" class="form-control col-sm-6" name="exam_name" placeholder="Exam Name"/>
-                    </div>
-                    <input type="hidden" class="form-control" name="user" value="{{ request.user.id }}" />
-                    <div class="form-group">
-                        <button class="btn btn-default" id="exam-form-submit" type="submit">
-                            <span class="glyphicon glyphicon-ok"></span>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 </div>
-<div id="add_questions" style="display:none">
-    <span class="row"></span>
-    <div class="row">
-        <div class="col-sm-4 col-sm-offset-4">
-            <input type="number" id="question-no" class="form-control" placeholder="Number Of Questions">
-        </div>
-    </div>
-    <div class="row">
-        <button class="btn btn-default btn-lg center-block" id="num-question-btn"><span class="glyphicon glyphicon-menu-down"></span></button>
-    </div>
-</div>
-<div id="read-questions" style="display:none">
-    <span class="row"></span>
-    <div class="row question">
-        <form name="question-form" id="question-form">
-            {% csrf_token %}
-            <div class="panel panel-default col-sm-8 col-sm-offset-2">
-                <div class="panel-heading h2">
-                    <input type="text" name="question" class="form-control" placeholder="Question"/>
-                </div>
-                <div class="panel-body">
-                    <ul class="list-group">
-                        <li class="list-group-item"><span class="col-sm-offset-2"><input type="text" placeholder="1" class="form-control"  name="option1"/></span></li>
-                        <li class="list-group-item"><span class="col-sm-offset-2"><input type="text" placeholder="2" class="form-control" name="option2" /></span></li>
-                        <li class="list-group-item"><span class="col-sm-offset-2"><input type="text" placeholder="3" class="form-control" name="option3" /></span></li>
-                        <li class="list-group-item"><span class="col-sm-offset-2"><input type="text" placeholder="4" class="form-control" name="option4" /></span></li>
-                    </ul>
-                </div>
-                <div class="panel-footer">
-                    <span class="col-sm-offset-2"><input type="text" class="form-control" name="answer" placeholder="answer"/></span>
-                </div>
-                <button class="btn btn-default center-block" type="submit"><span class="glyphicon glyphicon-forward" id="icon-span"></span></button>
-            </div>
-        </form>
-    </div>
-</div>
-
 <div class="row" id="question-display" style="display:none">
-    <span class="row"></span>
-    <div class="panel panel-default col-sm-8 col-sm-offset-2">
+    <div class="panel panel-default ">
         <div class="panel-heading h2 question-place"></div>
         <div class="panel-body">
             <ul class="list-group">
                 <a href="#" class="select-option">
                     <li class="list-group-item h3">
-                        <span class="glyphicon glyphicon-unchecked col-sm-offset-1"></span>
-                        <span class="col-sm-offset-2 option option1-place"></span>
+                        <span class="glyphicon glyphicon-unchecked"></span>
+                        <span class="option option1-place"></span>
                     </li>
                 </a>
                 <a href="#" class="select-option">
                     <li class="list-group-item h3">
-                        <span class="glyphicon glyphicon-unchecked col-sm-offset-1"></span>
-                        <span class="col-sm-offset-2 option option2-place"></span>
+                        <span class="glyphicon glyphicon-unchecked"></span>
+                        <span class="option option2-place"></span>
                     </li>
                 </a>
                 <a href="#" class="select-option">
                     <li class="list-group-item h3">
-                        <span class="glyphicon glyphicon-unchecked col-sm-offset-1"></span>
-                        <span class="col-sm-offset-2 option option3-place"></span>
+                        <span class="glyphicon glyphicon-unchecked"></span>
+                        <span class="option option3-place"></span>
                     </li>
                 </a>
                 <a href="#" class="select-option">
                     <li class="list-group-item h3">
-                        <span class="glyphicon glyphicon-unchecked col-sm-offset-1"></span>
-                        <span class="col-sm-offset-2 option option4-place"></span>
+                        <span class="glyphicon glyphicon-unchecked"></span>
+                        <span class="option option4-place"></span>
                     </li>
                 </a>
                 <input type="hidden" id="option-answer" value="" />
@@ -124,13 +59,13 @@
         <input type="hidden" name="test-score" value="" id="test-score">
         <input type="hidden" name="test-name" value="" id="test-name">
         <input type="hidden" name="user" value="{{ request.user.id }}">
-        <button class="btn btn-default exit-btn" id="submit-score" type="submit">exit</button>
+        <button class="btn btn-default exit-btn" id="submit-score" type="submit">Selesai</button>
     </form>
 </div>
 
 <div id="no-questions" class="jumbotron text-center" style="display:none">
     <p>Sorry! currently there are no questions in this exam</p>
-    <button class="btn btn-default exit-btn">exit</button>
+    <button class="btn btn-default exit-btn">Selesai</button>
 </div>
 </div>
 </div>
@@ -156,13 +91,13 @@
     });
 
     // disable f5
-    function disableF5(e) { if ((e.which || e.keyCode) == 116 || (e.which || e.keyCode) == 82) e.preventDefault(); };
-    $(document).ready(function(){
-        $(document).on("keydown", disableF5);
-    });
+    //function disableF5(e) { if ((e.which || e.keyCode) == 116 || (e.which || e.keyCode) == 82) e.preventDefault(); };
+    //$(document).ready(function(){
+    //    $(document).on("keydown", disableF5);
+    //});
     // disabled right click
-    document.addEventListener("contextmenu", function(e){
-        e.preventDefault();
-    }, false);
+    //document.addEventListener("contextmenu", function(e){
+    //    e.preventDefault();
+    //}, false);
 </script>
 {% endblock content %}

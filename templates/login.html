@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="dashboard-container">
+<div class="single-article">
+    <h1 class="text-center">Silakan login untuk mengikuti quiz!</h1>
+    <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    Username: <input type="text" name="username" value="" size="50" />
+    <br />
+    Password: <input type="password" name="password" value="" size="50" />
+    <br />
+    <input class="btn" type="submit" value="LETS GO" />
+    </form>
+</div>
+</div>
+{% endblock content %}

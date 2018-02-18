@@ -22,9 +22,7 @@ from choice import views
 urlpatterns = [
     # apps urls conf
     url(r'^quiz/', include('choice.urls')),
-    url(r'^login', views.welcome, name="login"),
-    url(r'^', include('django.contrib.auth.urls')),
-    url(r'^$', views.welcome,name="home"),
+    url(r'^$', views.welcome, name="home"),
 
     # admin app
     url(r'^admin/', admin.site.urls),
