@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <div class="top-bar" id="top-bar">
     <nav>
       <a href="#" class="logo-link" id="logo-link" aria-label="DEV Home">
@@ -5,19 +6,19 @@
       </a>
 
       {% if user.is_authenticated %}
-      <a href="/new" id="write-link" class="cta nav-link write">YOUR TESTS</a>
+      <a href="{% url 'siswa:result' pk=user.id %}" id="write-link" class="cta nav-link write">YOUR TESTS</a>
 
       <div class="navbar-menu-wrapper desktop" id="navbar-menu-wrapper">
         <button class="navigation-butt" id="navigation-butt" aria-label="Navigation">
-            <img class="nav-profile-image" id="nav-profile-image" src="https://res.cloudinary.com/practicaldev/image/fetch/s--O8vsx6CB--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://thepracticaldev.s3.amazonaws.com/uploads/user/profile_image/53459/1be18107-2078-4b79-b12c-ae718373d348.jpeg">
+            <img class="nav-profile-image" id="nav-profile-image" src="{% static 'image/mer.jpg' %}">
         </button>
         <div class="menubg" id="menubg"></div>
           <div class="menu logged-in" id="loggedinmenu">
             <div id="user-profile-link-placeholder">
-              <a href="/prayogateguh"><div class="option prime-option">@{{ user }}</div></a>
+              <a href="#"><div class="option prime-option">@{{ user }}</div></a>
             </div>
-            <a href="/settings"><div class="option">Profile</div></a>
-            <a href="{% url 'logout' %}" data-no-instant=""><div class="option">Sign Out</div></a>                   
+            <a href="{% url 'siswa:profile' pk=user.id %}"><div class="option">Profile</div></a>
+            <a href="{% url 'choice:logout' %}" data-no-instant=""><div class="option">Sign Out</div></a>                   
           </div>
       </div>
       {% endif %} 

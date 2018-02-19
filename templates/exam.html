@@ -54,7 +54,7 @@
 
 <div style="display:none" class="jumbotron text-center" id="score">
     <p>Your Score is <span id="count"></span> out of <span id="total"></span></p>
-    <form action="{% url 'upload_score' %}" method="post">
+    <form action="{% url 'choice:upload_score' %}" method="post">
         {% csrf_token %}
         <input type="hidden" name="test-score" value="" id="test-score">
         <input type="hidden" name="test-name" value="" id="test-name">

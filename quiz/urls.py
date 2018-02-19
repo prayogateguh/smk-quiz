@@ -21,7 +21,8 @@ from choice import views
 
 urlpatterns = [
     # apps urls conf
-    url(r'^quiz/', include('choice.urls')),
+    url(r'^quiz/', include('choice.urls', namespace='choice', app_name='choice')),
+    url(r'^siswa/', include('siswa.urls', namespace='siswa', app_name='siswa')),
     url(r'^$', views.welcome, name="home"),
 
     # admin app

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block title %}{{ user.profile.nama_lengkap|title }} - SMK IA{% endblock title %}
+    
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="panel panel-default">
+        <div class="panel-body text-center">
+            <img class="profile-img" src="{% static 'image/mer.jpg' %}" alt="profile-picture">
+            <h1>{{ user.profile.nama_lengkap }}</h1>
+            <h3>Nilai Kamu</h3>
+            <h1 class="score">{{ ujian.score }}</h1>
+            <h4>{{ ujian.mata_pelajaran }}</h4>            
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block nav %}{% endblock nav %}
+{% block footer %}{% endblock footer %}

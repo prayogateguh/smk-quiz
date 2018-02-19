@@ -37,7 +37,7 @@ def upload_score(request):
         s.kkm = 75
         s.score = score
         s.save()
-        return redirect('home')
+        return HttpResponseRedirect(reverse('siswa:result', args=(s.user.pk,)))
 
 
 #viewsets for rest_framework
@@ -65,7 +65,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('exam_test'))
+                return HttpResponseRedirect(reverse('choice:exam_test'))
             else:
                 return HttpResponse("Your Rango account is disabled.")
         else:

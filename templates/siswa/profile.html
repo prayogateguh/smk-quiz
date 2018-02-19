@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block title %}{{ siswa.nama_lengkap|title }} - SMK IA{% endblock title %}
+    
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="panel panel-default">
+        <div class="panel-body text-center">
+            <img class="profile-img" src="{% static 'image/mer.jpg' %}" alt="profile-picture">
+            <h1>{{ siswa.nama_lengkap }}</h1>
+            <h5>{{ siswa.nim }}</h5>
+            <h5>{{ siswa.kelas }}</h5>
+            <hr>
+            
+            <h3>Tests history</h3>
+            {% for u in ujian %}
+            <h5>{{ u.mata_pelajaran }} - nilai:{{ u.score }} - tanggal: {{ u.tanggal|date:"d-M-Y" }}</h5>
+            {% endfor %}
+            
+        </div>
+    </div>
+</div>
+{% endblock content %}

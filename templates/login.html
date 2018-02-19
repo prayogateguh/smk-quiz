@@ -4,7 +4,7 @@
 <div class="dashboard-container">
 <div class="single-article">
     <h1 class="text-center">Silakan login untuk mengikuti quiz!</h1>
-    <form method="post" action="{% url 'login' %}">
+    <form method="post" action="{% url 'choice:login' %}">
     {% csrf_token %}
     Username: <input type="text" name="username" value="" size="50" />
     <br />

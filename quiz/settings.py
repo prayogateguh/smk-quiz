@@ -38,6 +38,7 @@ LOGIN_URL = reverse_lazy('login')
 INSTALLED_APPS = [
     'rest_framework',
     'choice.apps.ChoiceConfig',
+    'siswa.apps.SiswaConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

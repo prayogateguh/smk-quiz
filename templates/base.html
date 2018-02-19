@@ -28,7 +28,10 @@
 </head>
 <body>
     
-    {% include 'nav.html' %}
+    
+    {% block nav %}
+        {% include 'nav.html' %}
+    {% endblock nav %}    
         
     {% block content %}
     <h1>Account</h1>
@@ -40,7 +43,10 @@
     <img src="{% static 'img/ladybug.jpg' %}" alt="Picture of Ladybug">  
     {% endblock content %}
     
-    {% include 'footer.html' %}
+    
+    {% block footer %}
+        {% include 'footer.html' %}
+    {% endblock footer %}
         
 </body>
 </html>
