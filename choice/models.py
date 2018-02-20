@@ -4,7 +4,9 @@ from django.db import models
 
 class Exam(models.Model):
     name = models.CharField(max_length=100, default="")
-    user = models.ForeignKey(User)
+    guru = models.CharField(max_length=50)
+    kkm = models.IntegerField()
+    tanggal = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __str__(self):
         return self.name
@@ -27,8 +29,8 @@ class Score(models.Model):
     user = models.ForeignKey(User)
     mata_pelajaran = models.ForeignKey(Exam)
     score = models.IntegerField()
-    kkm = models.IntegerField()
     tanggal = models.DateTimeField(auto_now_add=True, auto_now=False)
+    lulus = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username

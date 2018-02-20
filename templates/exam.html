@@ -4,10 +4,17 @@
 {% block content %}
 <div class="dashboard-container">
 <div class="single-article">
-<div id="exam_list" class="text-center center-block">
-    <h1 class="text-center">List Ujian</h1>
-    <span class="row"></span>
-</div>
+
+{% if siswa.sudah_ujian %}
+    <div class="block-center text-center">
+        <h1>Kamu sudah ujian</h1>
+        <p><a class="btn btn-success" href="{% url 'siswa:result' pk=user.pk %}">lihat hasil</a></p>
+    </div>
+{% else %}
+    <h1 class="text-center">Quiz</h1>
+    <span id="exam_list" class="text-center"></span>
+{% endif %}
+
 <div class="row" id="question-display" style="display:none">
     <div class="panel panel-default ">
         <div class="panel-heading h2 question-place"></div>
@@ -53,19 +60,20 @@
 </div>
 
 <div style="display:none" class="jumbotron text-center" id="score">
-    <p>Your Score is <span id="count"></span> out of <span id="total"></span></p>
+    <p>Kamu betul <span id="count"></span> dari total <span id="total"></span> pertanyaan.</p>
     <form action="{% url 'choice:upload_score' %}" method="post">
         {% csrf_token %}
+        <input type="hidden" name="lulus" value="" id="lulus">
         <input type="hidden" name="test-score" value="" id="test-score">
         <input type="hidden" name="test-name" value="" id="test-name">
         <input type="hidden" name="user" value="{{ request.user.id }}">
-        <button class="btn btn-default exit-btn" id="submit-score" type="submit">Selesai</button>
+        <button class="btn btn-success exit-btn" id="submit-score" type="submit">LIHAT NILAI</button>
     </form>
 </div>
 
 <div id="no-questions" class="jumbotron text-center" style="display:none">
-    <p>Sorry! currently there are no questions in this exam</p>
-    <button class="btn btn-default exit-btn">Selesai</button>
+    <p>Maaf! Ujian mata pelajaran ini masih belum memiliki soal</p>
+    <button class="btn btn-default exit-btn">Keluar</button>
 </div>
 </div>
 </div>
@@ -78,26 +86,23 @@
     {
         return "<div class='row exam-panel'>"+
                 "<a href='#'><div class='panel panel-default col-sm-4 col-sm-offset-4'>"+
-                "<div class='exam_template panel-body' id="+id+">"+
-                name+
-                "</div></div></a></div>";
+                "<div class='exam_template panel-body' id="+id+">"+name+"</div></div></a></div>";
     }
     $.get("/quiz/api/exam/",function(data,status){
         for(i=0;i<data.length;i++)
         {
             //alert(i);
-            $("#exam_list").append(template(data[i].id,data[i].name));
+            $("#exam_list").append(template(data[i].id, data[i].name));
         }
     });
-
     // disable f5
-    //function disableF5(e) { if ((e.which || e.keyCode) == 116 || (e.which || e.keyCode) == 82) e.preventDefault(); };
-    //$(document).ready(function(){
-    //    $(document).on("keydown", disableF5);
-    //});
+    function disableF5(e) { if ((e.which || e.keyCode) == 116 || (e.which || e.keyCode) == 82) e.preventDefault(); };
+    $(document).ready(function(){
+        $(document).on("keydown", disableF5);
+    });
     // disabled right click
-    //document.addEventListener("contextmenu", function(e){
-    //    e.preventDefault();
-    //}, false);
+    document.addEventListener("contextmenu", function(e){
+        e.preventDefault();
+    }, false);
 </script>
 {% endblock content %}

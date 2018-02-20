@@ -3,23 +3,22 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponse, HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 
 from rest_framework import viewsets
 
 from .models import Exam, Question, Score
 from .serializer import ExamSerializer, QuestionSerialzer
 
+from siswa.models import Profile
+
 
 #welcome screen
 def welcome(request):
     if request.user.is_authenticated():
-        return render(request, "exam.html")
+        siswa = get_object_or_404(Profile, user=request.user)
+        return render(request, "exam.html", {'siswa': siswa, })
     return render(request, "login.html")
-
-@login_required()
-def exam_test(request):
-    return render(request,"exam.html")
 
 
 @login_required()
@@ -32,11 +31,16 @@ def upload_score(request):
         s = Score()
         user = request.POST.get("user")
         exam = request.POST.get("test-name")
+        lulus = request.POST['lulus']
         s.user = User.objects.get(pk=user)
         s.mata_pelajaran = Exam.objects.get(pk=exam)
-        s.kkm = 75
+        print("print:"+lulus)
+        # s.lulus = bool(int(lulus))
         s.score = score
         s.save()
+        p = get_object_or_404(Profile, user=user)
+        p.sudah_ujian = True
+        p.save()
         return HttpResponseRedirect(reverse('siswa:result', args=(s.user.pk,)))
 
 
@@ -47,8 +51,9 @@ class QuestionViewset(viewsets.ModelViewSet):
 
 
 class ExamViewset(viewsets.ModelViewSet):
-    queryset = Exam.objects.all()
+    queryset = Exam.objects.all().order_by('-tanggal')[:1]
     serializer_class = ExamSerializer
+
 
 class ExamQuestionViewset(viewsets.ModelViewSet):
     serializer_class = QuestionSerialzer
@@ -65,9 +70,9 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('choice:exam_test'))
+                return HttpResponseRedirect(reverse('home'))
             else:
-                return HttpResponse("Your Rango account is disabled.")
+                return HttpResponse("Your account is disabled.")
         else:
             return HttpResponse("Invalid login details supplied.")
     else:

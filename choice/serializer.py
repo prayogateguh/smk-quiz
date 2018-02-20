@@ -6,7 +6,7 @@ from .models import Exam, Question
 class ExamSerializer(serializers.ModelSerializer):
     class Meta:
         model = Exam
-        fields = ['id','name','user']
+        fields = ['id','name','guru', 'kkm', 'tanggal']
 
 class QuestionSerialzer(serializers.ModelSerializer):
     class Meta:

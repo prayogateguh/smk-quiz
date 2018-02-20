@@ -9,6 +9,7 @@ $(document).ready(function(){
         $("#total").text(total);
         $("#score").slideDown();
     }
+
     function test(data,count)
     {
         j = 1;
@@ -64,6 +65,7 @@ $(document).ready(function(){
     $("#exam_list").on('click','.exam-panel',function(){
             $("#exam_list").hide();
             exam_id = $(this).find(".exam_template").attr('id');
+            
             $.get("/quiz/api/question/",function(data,status){
                 var i;
                // alert("hello");
@@ -94,12 +96,15 @@ $(document).ready(function(){
                 test(data,0);
             });
     });
+    
     $(".exit-btn").click(function(){
         count = $('#count').text();
         total = $('#total').text();
-        score = parseInt(count)/parseInt(total) * 100;
-        $("#test-score").attr("value", score);
+        nilaimu = parseInt(count)/parseInt(total) * 100;
+
+        $("#test-score").attr("value", nilaimu);
         $("#test-name").attr("value", exam_id);
+        $("#lulus").attr("value", "teguh");
         window.location.reload();
     });
 });

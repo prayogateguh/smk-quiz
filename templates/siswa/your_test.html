@@ -11,14 +11,16 @@
         <div class="panel-body text-center">
             <img class="profile-img" src="{% static 'image/mer.jpg' %}" alt="profile-picture">
             <h1>{{ user.profile.nama_lengkap }}</h1>
-            <h3>Nilai Kamu</h3>
-            <h1 class="score">{{ ujian.score }}</h1>
-            <h4>{{ ujian.mata_pelajaran }}</h4>            
+            
+            {% if ujian %}
+                <h3>Nilai Kamu</h3>
+                <h1 class="score">{{ ujian.score }}</h1>
+                <h4>{{ ujian.mata_pelajaran }}</h4>
+            {% else %}
+                <h5>Kamu belum mengambil ujian</h5>  
+            {% endif %}    
+                    
         </div>
     </div>
 </div>
 {% endblock content %}
-
-
-{% block nav %}{% endblock nav %}
-{% block footer %}{% endblock footer %}

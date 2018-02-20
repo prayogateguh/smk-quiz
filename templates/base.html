@@ -9,7 +9,7 @@
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     
-    <title>{% block title %}Account{% endblock title %}</title>
+    <title>{% block title %}SMK-Quiz{% endblock title %}</title>
     
     <style>
         .show-exam-form > .panel, .row > .panel {
@@ -29,9 +29,7 @@
 <body>
     
     
-    {% block nav %}
-        {% include 'nav.html' %}
-    {% endblock nav %}    
+    {% include 'nav.html' %}    
         
     {% block content %}
     <h1>Account</h1>
@@ -44,9 +42,6 @@
     {% endblock content %}
     
     
-    {% block footer %}
-        {% include 'footer.html' %}
-    {% endblock footer %}
-        
+    <!-- {% include 'footer.html' %} -->
 </body>
 </html>

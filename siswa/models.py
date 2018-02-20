@@ -7,9 +7,10 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nama_lengkap = models.CharField(max_length=50)
     nim = models.CharField(max_length=20)
-    # post_pic = models.ImageField(upload_to='img/', null=True, blank=True)
+    post_pic = models.ImageField(upload_to='img/', null=True, blank=True)
     kelas = models.CharField(max_length=20)
     slug = models.SlugField(max_length=250, unique=True)
+    sudah_ujian = models.BooleanField(default=False)
 
     def __str__(self):
         return self.nama_lengkap

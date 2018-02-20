@@ -9,7 +9,7 @@
 <div class="dashboard-container">
     <div class="panel panel-default">
         <div class="panel-body text-center">
-            <img class="profile-img" src="{% static 'image/mer.jpg' %}" alt="profile-picture">
+            <img class="profile-img" src="{{ siswa.post_pic.url }}" alt="profile-picture">
             <h1>{{ siswa.nama_lengkap }}</h1>
             <h5>{{ siswa.nim }}</h5>
             <h5>{{ siswa.kelas }}</h5>
@@ -17,7 +17,7 @@
             
             <h3>Tests history</h3>
             {% for u in ujian %}
-            <h5>{{ u.mata_pelajaran }} - nilai:{{ u.score }} - tanggal: {{ u.tanggal|date:"d-M-Y" }}</h5>
+            <h5>{{ u.mata_pelajaran }} - nilai: {{ u.score }} - tanggal: {{ u.tanggal|date:"d-M-Y G:i" }}</h5>
             {% endfor %}
             
         </div>
