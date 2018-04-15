@@ -22,24 +22,8 @@ def profile(request, pk):
 def your_test(request, pk):
     try:
         ujian = Score.objects.filter(user=pk).order_by('-tanggal')[0]
+        siswa = get_object_or_404(Profile, pk=pk)
     except:
         ujian = None
 
-    return render(request, 'siswa/your_test.html', {'ujian': ujian, })
-
-
-# @login_required
-# def convert_pdf(modeladmin, request, queryset):
-#     cm = 2.54
-#     response = HttpResponse(mimetype='application/pdf')
-#     response['Content-Disposition'] = 'attachment; filename=somefilename.pdf'
-
-#     elements = []
-
-#     doc = SimpleDocTemplate(response, rightMargin=0, leftMargin=6.5 * cm, topMargin=0.3 * cm, bottomMargin=0)
-
-#     data=[(1,2),(3,4)]
-#     table = Table(data, colWidths=270, rowHeights=79)
-#     elements.append(table)
-#     doc.build(elements) 
-#     return response
+    return render(request, 'siswa/your_test.html', {'siswa': siswa, 'ujian': ujian, })

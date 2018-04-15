@@ -9,7 +9,7 @@
 <div class="dashboard-container">
     <div class="panel panel-default">
         <div class="panel-body text-center">
-            <img class="profile-img" src="{% static 'image/mer.jpg' %}" alt="profile-picture">
+            <img class="profile-img" src="{{ siswa.post_pic.url }}" alt="profile-picture">
             <h1>{{ user.profile.nama_lengkap }}</h1>
             
             {% if ujian %}
